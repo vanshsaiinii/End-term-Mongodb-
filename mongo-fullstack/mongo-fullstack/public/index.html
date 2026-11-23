@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MongoDB Practice App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>MongoDB Practice App</h1>
+  <nav>
+    <button class="on" data-tab="stu">Student records</button>
+    <button data-tab="emp">Employee directory</button>
+  </nav>
+</header>
+<main>
+  <section id="stu" class="on">
+    <div class="bar">
+      <select id="deptFilter">
+        <option value="">All departments</option>
+        <option>CSE</option><option>ECE</option><option>MECH</option>
+      </select>
+      <span class="grow"></span>
+      <span id="count" class="note"></span>
+      <button class="btn" id="resetStu">Load sample data</button>
+    </div>
+    <form class="add" id="addStu">
+      <input name="rollNo" type="number" placeholder="Roll no" required>
+      <input name="name" placeholder="Name" required>
+      <input name="dept" placeholder="Department" required>
+      <input name="marks" type="number" placeholder="Marks" required>
+      <input name="city" placeholder="City" required>
+      <button class="btn primary">Add student</button>
+    </form>
+    <div class="bar">
+      <select id="semDept"><option>CSE</option><option>ECE</option><option>MECH</option></select>
+      <input id="semVal" type="number" placeholder="Semester" value="3" style="width:110px">
+      <button class="btn" id="setSem">Set semester for department</button>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Roll no</th><th>Name</th><th>Dept</th><th>Marks</th><th>City</th><th>Semester</th><th></th></tr></thead>
+      <tbody id="stuBody"></tbody>
+    </table></div>
+  </section>
+
+  <section id="emp">
+    <div class="bar">
+      <button class="btn" data-q="gt">Salary above 60000</button>
+      <button class="btn" data-q="range">Salary 45000 to 60000</button>
+      <button class="btn" data-q="in">IT or Finance</button>
+      <button class="btn" data-q="and">Chennai and above 50000</button>
+      <button class="btn" data-q="or">HR or above 70000</button>
+      <button class="btn" data-q="nin">Not Chennai or Bengaluru</button>
+      <button class="btn" data-q="regex">Name starts with A, B or C</button>
+      <button class="btn" data-q="page">Top salaries, page 2</button>
+      <span class="grow"></span>
+      <button class="btn" id="allEmp">Show all</button>
+      <button class="btn" id="resetEmp">Load sample data</button>
+    </div>
+    <p class="note" id="empNote">Pick a query to see the result.</p>
+    <div class="table-wrap"><table>
+      <thead id="empHead"></thead>
+      <tbody id="empBody"></tbody>
+    </table></div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
